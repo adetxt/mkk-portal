@@ -1,0 +1,72 @@
+@import "./bootstrap.scss";
+@import "./helpers.scss";
+@import "~bootstrap/scss/variables";
+
+body {
+  background-color: material-color('blue', '900');
+}
+
+.background-screen {
+  height: 100vh;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.navbar {
+  .navbar-brand {
+    letter-spacing: .25rem;
+  }
+}
+
+$sidebar-width: 16rem;
+
+#sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: .4s;
+  height: 100vh;
+  z-index: 10;
+  width: $sidebar-width;
+  margin-right: -$sidebar-width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .sidebar-item {
+    text-decoration: none;
+    font-size: 16pt;
+    color: material-color('grey', '300');
+    @include md {
+      font-size: 14pt;
+    }
+  }
+
+  &.sidebar-toggled {
+    margin-right: 0;
+  }
+}
+
+#content-wrapper {
+  transition: .4s;
+
+  &.sidebar-toggled {
+    margin-right: $sidebar-width;
+    margin-left: -$sidebar-width;
+  }
+}
+
+.sosmed {
+  z-index: 10;
+
+  a {
+    color: material-color('blue', '900');
+    border-radius: 50%;
+    padding: .5rem;
+    background-color: material-color('grey', '200');
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  }
+}
