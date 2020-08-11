@@ -12,15 +12,15 @@
   <div id="sidebar" class="py-5" style="background: url('img/bg2.jpg');">
     <a href="/" class="sidebar-item mb-4">Home</a>
     <a href="/about" class="sidebar-item mb-4">About</a>
+    <a href="/news" class="sidebar-item mb-4">Berita</a>
     <a href="/contact" class="sidebar-item mb-4">Contact</a>
   </div>
 
   <div id="content-wrapper">
-    <div class="background-screen d-flex justify-content-center align-items-start flex-wrap"
-      style="background: url('img/bg2.jpg'); height: 100vh;">
-      <nav class="navbar navbar-expand-lg navbar-dark w-100">
+    <div class="d-flex justify-content-center align-items-start flex-wrap" style="height: 100vh;">
+      <nav class="navbar navbar-expand-lg navbar-light w-100">
         <div class="container-fluid">
-          <a class="navbar-brand font-weight-light" href="#!">
+          <a class="navbar-brand font-weight-normal" href="#!">
             LOGO MKK
           </a>
     
@@ -31,12 +31,6 @@
       </nav>
     
       @yield('content')
-    
-      <div class="footer mt-auto w-100">
-        <div class="copy text-light pb-2 pt-5 text-center">
-          Copyright &copy; 2020 <a class="text-light" href="#!">Mandiri Karya Kirana</a>
-        </div>
-      </div>
     
       <div class="sosmed position-fixed d-flex flex-column mx-3 my-3" style="bottom: 0; left: 0;">
         <a class="mb-3 d-inline-block" href="#!">

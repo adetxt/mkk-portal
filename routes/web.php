@@ -32,3 +32,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
   return view('climb-template.pages.contact');
 })->name('contact');
+
+Route::get('/news', function () {
+  return view('climb-template.pages.news');
+})->name('news');
