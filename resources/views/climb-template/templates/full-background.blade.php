@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Climb</title>
+  <title>{{ $page_data['title'] }}</title>
 
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+  @yield('style')
 </head>
 <body>
   <div id="sidebar" class="py-5" style="background: url('img/bg2.jpg');">
@@ -32,14 +33,14 @@
     
       @yield('content')
     
-      <div class="sosmed position-fixed d-flex flex-column mx-3 my-3" style="bottom: 0; left: 0;">
+      {{-- <div class="sosmed position-fixed d-flex flex-column mx-3 my-3" style="bottom: 0; left: 0;">
         <a class="mb-3 d-inline-block" href="#!">
           <i class="gg-facebook"></i>
         </a>
         <a class="mb-3 d-inline-block" href="#!">
           <i class="gg-instagram"></i>
         </a>
-      </div>
+      </div> --}}
     </div>
   </div>
 

@@ -7,7 +7,12 @@ body {
 }
 
 .background-screen {
-  height: 24rem;
+  height: 26rem;
+
+  @include md {
+    height: 22rem;
+  }
+
   background-attachment: fixed !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -37,7 +42,7 @@ $sidebar-width: 16rem;
   .sidebar-item {
     text-decoration: none;
     font-size: 16pt;
-    color: material-color('grey', '300');
+    color: material-color('grey', '900');
     @include md {
       font-size: 14pt;
     }

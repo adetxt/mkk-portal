@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('climb-template.pages.index');
-})->name('index');
+
+Route::group([
+  'namespace' => 'v1'
+], function ($r) {
+  $r->get('/', 'PageController@index')->name('index');
+  $r->get('/about', 'PageController@about')->name('about');
+  $r->get('/test', 'PageController@about')->name('test');
+});
 
 Route::get('/home', function () {
   return redirect()->route('index');
@@ -24,10 +29,6 @@ Route::get('/home', function () {
 Route::get('/index', function () {
   return redirect()->route('index');
 });
-
-Route::get('/about', function () {
-  return view('climb-template.pages.about');
-})->name('about');
 
 Route::get('/contact', function () {
   return view('climb-template.pages.contact');
