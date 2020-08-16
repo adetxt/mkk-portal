@@ -8,10 +8,10 @@ use Cache;
 
 class HookController extends DirectusController
 {
-  public function recacheCollection (Request $req, $collectionName, $action, $single = null) {
-    Cache::forget($collectionName);
-    $cached = Cache::rememberForever($collectionName, function () {
-      return $this->getItems($collectionName, null, [
+  public function recacheCollection (Request $req, $collection, $action, $single = null) {
+    Cache::forget($collection);
+    $cached = Cache::rememberForever($collection, function () use ($collection, $single) {
+      return $this->getItems($collection, null, [
         'single' => ($single ? true : false),
         'fields' => '*.*'
       ])['data'];

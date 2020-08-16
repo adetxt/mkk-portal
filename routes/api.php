@@ -25,6 +25,6 @@ Route::group([
   $r->group([
     'prefix' => 'hook'
   ], function ($hook) {
-    $hook->post('/recache-collection/{collectionName}/{action}/{single?}', 'HookController@recacheCollection');
+    $hook->post('/recache-collection/{collection}/{action}/{single?}', 'HookController@recacheCollection');
   });
 });
