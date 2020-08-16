@@ -1,6 +1,6 @@
 <div class="card" style="{{ $style ?? '' }}">
-  @if (isset($imgUrl))
-  <img src="{{ $imgUrl }}" class="card-img-{{ $imgPos ?? 'top' }} float-left" alt="{{ $imgAlt ?? '...' }}">
+  @if (isset($imgUrl) and !empty($imgUrl))
+  <img src="{{ $imgUrl }}" class="card-img-{{ $imgPos ?? 'top' }} float-left {{ $imgClass ?? '' }}" alt="{{ $imgAlt ?? '...' }}">
   @endif
 
   @if (!isset($cardGrid))    

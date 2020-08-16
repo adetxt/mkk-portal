@@ -27,4 +27,6 @@ Route::group([
   ], function ($hook) {
     $hook->post('/recache-collection/{collection}/{action}/{single?}', 'HookController@recacheCollection');
   });
+
+  $r->get('/flush', 'HookController@flushCache');
 });

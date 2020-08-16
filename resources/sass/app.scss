@@ -20,6 +20,20 @@ body {
   background-attachment: fixed !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
+  background-position: center;
+}
+
+.background-screen-page {
+  height: 26rem;
+
+  @include md {
+    height: 22rem;
+  }
+
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center;
 }
 
 .navbar {
@@ -81,7 +95,9 @@ $sidebar-width: 16rem;
 
 .jumbotron {
   .jumbotron-content {
-    background-color: #ffffff1a;
+    // background-color: #ffffff3a;
+    background: rgb(245, 245, 245);
+    background: linear-gradient(180deg, rgba(245, 245, 245, 0.0760679271708683) 0%, rgba(245, 245, 245, 1) 100%);
     height: 100%;
 
     div {

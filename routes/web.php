@@ -19,6 +19,7 @@ Route::group([
 ], function ($r) {
   $r->get('/', 'PageController@index')->name('index');
   $r->get('/about', 'PageController@about')->name('about');
+  $r->get('/news', 'PageController@news')->name('news');
   $r->get('/test', 'PageController@about')->name('test');
 });
 
@@ -33,7 +34,3 @@ Route::get('/index', function () {
 Route::get('/contact', function () {
   return view('climb-template.pages.contact');
 })->name('contact');
-
-Route::get('/news', function () {
-  return view('climb-template.pages.news');
-})->name('news');

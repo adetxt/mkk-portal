@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="row g-5">
-    <div class="col-lg-6 order-1">
+    <div class="col-lg-6 order-2 order-lg-1">
       <div>{!! $company_data['tentang_perusahaan'] !!}</div>
     </div>
     <div class="col-lg-6 order-4 order-lg-3">
@@ -16,13 +16,13 @@
         {!! $company_data['visi_misi'] !!}
       </div>
     </div>
-    <div class="col-lg-6 order-2 order-lg-4">
+    <div class="col-lg-6 order-3 order-lg-4">
       {{-- <h5 class="card-title">Sejarah MKK</h5>
       <hr> --}}
       <a href="#!" class="btn btn-primary btn-sm w-100">Ketahui Sejarah MKK</a>
     </div>
-    <div class="col-lg-6 order-3 order-lg-2">
-      <img class="w-100 img-cover" src="/img/bg.jpg" alt="..." style="height: 100%;">
+    <div class="col-lg-6 order-1 order-lg-2">
+      <img class="w-100 img-cover" src="{{ config('directus.server_url').($page_data['featured_image']['data']['asset_url'] ?? '') }}" alt="..." style="height: 100%;">
     </div>
   </div>
 </div>

@@ -19,4 +19,17 @@ class HookController extends DirectusController
 
     return response()->json('success');
   }
+
+  public function flushCache (Request $req) {
+    $whitelist = [
+      '127.0.0.1',
+      '::1'
+    ];
+
+    if (!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+      return response()->json('ga bisa :>');
+    }
+
+    return Cache::flush();
+  }
 }

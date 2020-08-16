@@ -21,7 +21,8 @@ class PageController extends DirectusController
   public function index (Request $req) {
     $page_data = $this->getItems('pages', null, [
       'filter[key][eq]' => 'index',
-      'single' => true
+      'single' => true,
+      'fields' => '*,featured_image.data'
     ])['data'];
 
     list($application_data, $company_data) = $this->withCompanyAndApplication();
@@ -38,12 +39,36 @@ class PageController extends DirectusController
   public function about (Request $req) {
     $page_data = $this->getItems('pages', null, [
       'filter[key][eq]' => 'about',
-      'single' => true
+      'single' => true,
+      'fields' => '*,featured_image.data'
     ])['data'];
 
     list($application_data, $company_data) = $this->withCompanyAndApplication();
 
     return view($this->template.'about', compact('page_data','company_data','application_data'));
+  }
+  
+  /**
+   * News page
+   *
+   * @param  mixed $req
+   * @return void
+   */
+  public function news (Request $req) {
+    $page_data = $this->getItems('pages', null, [
+      'filter[key][eq]' => 'news',
+      'single' => true,
+      'fields' => '*,featured_image.data'
+    ])['data'];
+
+    $news_data = $this->getItems('news', null, [
+      'status' => 'published',
+      'fields' => 'created_on,title,excerpt,featured_image.data'
+    ])['data'];
+
+    list($application_data, $company_data) = $this->withCompanyAndApplication();
+
+    return view($this->template.'news', compact('page_data','news_data','company_data','application_data'));
   }
 
   public function getCompany () {

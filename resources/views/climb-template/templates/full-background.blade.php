@@ -12,8 +12,8 @@
 <body>
   <div id="sidebar" class="py-5" style="background: url('img/bg2.jpg');">
     <a href="/" class="sidebar-item mb-4">Home</a>
-    <a href="/about" class="sidebar-item mb-4">About</a>
-    <a href="/news" class="sidebar-item mb-4">Berita</a>
+    <a href="/about" class="sidebar-item mb-4">Tentang Kami</a>
+    <a href="/news" class="sidebar-item mb-4">Informasi</a>
     <a href="/contact" class="sidebar-item mb-4">Contact</a>
   </div>
 

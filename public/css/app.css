@@ -10743,6 +10743,7 @@ body {
   background-attachment: fixed !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
+  background-position: center;
 }
 
 @media (max-width: 991.98px) {
@@ -10754,6 +10755,20 @@ body {
 @media (min-width: 1920px) {
   .background-screen {
     height: 40rem;
+  }
+}
+
+.background-screen-page {
+  height: 26rem;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center;
+}
+
+@media (max-width: 991.98px) {
+  .background-screen-page {
+    height: 22rem;
   }
 }
 
@@ -10817,7 +10832,8 @@ body {
 }
 
 .jumbotron .jumbotron-content {
-  background-color: #ffffff1a;
+  background: whitesmoke;
+  background: linear-gradient(180deg, rgba(245, 245, 245, 0.0760679272) 0%, whitesmoke 100%);
   height: 100%;
 }
 
