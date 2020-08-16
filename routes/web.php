@@ -20,6 +20,7 @@ Route::group([
   $r->get('/', 'PageController@index')->name('index');
   $r->get('/about', 'PageController@about')->name('about');
   $r->get('/news', 'PageController@news')->name('news');
+  $r->get('/contact', 'PageController@contact')->name('contact');
   $r->get('/test', 'PageController@about')->name('test');
 });
 
@@ -30,7 +31,3 @@ Route::get('/home', function () {
 Route::get('/index', function () {
   return redirect()->route('index');
 });
-
-Route::get('/contact', function () {
-  return view('climb-template.pages.contact');
-})->name('contact');

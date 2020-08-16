@@ -43,13 +43,13 @@ body {
       width: 3rem;
 
       @include fhd {
-        width: 6rem;
+        width: 4rem;
       }
     }
 
     .toggle {
       @include fhd {
-        --ggs: 2;
+        --ggs: 1.5;
       }
     }
   }
@@ -140,4 +140,8 @@ $sidebar-width: 16rem;
 
 img.img-cover {
   object-fit: cover;
+}
+
+.h-screen {
+  height: 100vh;
 }

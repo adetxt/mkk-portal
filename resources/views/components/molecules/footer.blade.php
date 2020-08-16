@@ -1,5 +1,5 @@
-<div class="footer w-100">
-  <div class="copy text-dark pb-2 text-{{isset($align) ? $align : 'center'}}">
+<div class="footer w-100 {{ $addClass ?? '' }}">
+  <footer class="copy text-dark pb-2">
     {{ $text ?? '' }}
-  </div>
+  </footer>
 </div>

@@ -27,7 +27,7 @@ class PageController extends DirectusController
 
     list($application_data, $company_data) = $this->withCompanyAndApplication();
 
-    return view($this->template.'index', compact('page_data','company_data','application_data'));
+    return view($this->template.'index2', compact('page_data','company_data','application_data'));
   }
   
   /**
@@ -69,6 +69,24 @@ class PageController extends DirectusController
     list($application_data, $company_data) = $this->withCompanyAndApplication();
 
     return view($this->template.'news', compact('page_data','news_data','company_data','application_data'));
+  }
+
+  /**
+   * Contact page
+   *
+   * @param  mixed $req
+   * @return void
+   */
+  public function contact (Request $req) {
+    $page_data = $this->getItems('pages', null, [
+      'filter[key][eq]' => 'contact',
+      'single' => true,
+      'fields' => '*,featured_image.data'
+    ])['data'];
+
+    list($application_data, $company_data) = $this->withCompanyAndApplication();
+
+    return view($this->template.'contact', compact('page_data','company_data','application_data'));
   }
 
   public function getCompany () {

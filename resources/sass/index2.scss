@@ -1,0 +1,25 @@
+@import '~sass-material-colors/sass/sass-material-colors';
+@import './helpers.scss';
+
+.jumbotron {
+  .jumbotron-content {
+    background: transparent !important;
+
+    div {
+      right: 0;
+      bottom: 0;
+      margin-left: 0 !important;
+      width: auto !important;
+      margin-bottom: 0 !important;
+
+      @include md {
+        margin-left: 1rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.company-motto {
+  font-size: 18pt;
+}

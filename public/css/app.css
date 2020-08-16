@@ -10782,13 +10782,13 @@ body {
 
 @media (min-width: 1920px) {
   .navbar .navbar-brand img {
-    width: 6rem;
+    width: 4rem;
   }
 }
 
 @media (min-width: 1920px) {
   .navbar .navbar-brand .toggle {
-    --ggs: 2;
+    --ggs: 1.5;
   }
 }
 
@@ -10881,5 +10881,9 @@ body {
 img.img-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.h-screen {
+  height: 100vh;
 }
 

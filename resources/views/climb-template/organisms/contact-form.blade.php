@@ -16,6 +16,6 @@
     <textarea class="form-control" id="inputMessage" rows="3"></textarea>
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary">Kirim Pesan</button>
   </div>
 </form>
