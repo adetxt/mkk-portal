@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\DirectusController;
 use Illuminate\Http\Request;
+use Cache;
 
 class PageController extends DirectusController
 {
@@ -23,9 +24,9 @@ class PageController extends DirectusController
       'single' => true
     ])['data'];
 
-    $company_data = $this->getCompany('nama_perusahaan,motto');
+    list($application_data, $company_data) = $this->withCompanyAndApplication();
 
-    return view($this->template.'index', compact('page_data','company_data'));
+    return view($this->template.'index', compact('page_data','company_data','application_data'));
   }
   
   /**
@@ -40,15 +41,41 @@ class PageController extends DirectusController
       'single' => true
     ])['data'];
 
-    $company_data = $this->getCompany('tentang_perusahaan,visi_misi');
+    list($application_data, $company_data) = $this->withCompanyAndApplication();
 
-    return view($this->template.'about', compact('page_data','company_data'));
+    return view($this->template.'about', compact('page_data','company_data','application_data'));
   }
 
-  public function getCompany ($fields = null) {
-    return $this->getItems('company', null, [
-      'single' => true,
-      'fields' => $fields ?? '*'
-    ])['data'];
+  public function getCompany () {
+    return Cache::rememberForever('company', function () {
+      return $this->getItems('company', null, [
+        'single' => true,
+        'fields' => '*,logo.data'
+      ])['data'];
+    });
+  }
+
+  public function getApplication () {
+    return Cache::rememberForever('application', function () {
+      return $this->getItems('application', null, [
+        'single' => true,
+        'fields' => '*'
+      ])['data'];
+    });
+  }
+
+  public function withCompanyAndApplication () {
+    $application_data = Cache::get('application', function () {
+      return $this->getApplication();
+    });
+
+    $company_data = Cache::get('company', function () {
+      return $this->getCompany();
+    });
+
+    return [
+      $application_data,
+      $company_data
+    ];
   }
 }

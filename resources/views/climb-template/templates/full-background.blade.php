@@ -21,12 +21,12 @@
     <div class="d-flex justify-content-center align-items-start flex-wrap" style="height: 100vh;">
       <nav class="navbar navbar-expand-lg navbar-light w-100">
         <div class="container-fluid">
-          <a class="navbar-brand font-weight-normal" href="#!">
-            LOGO MKK
+          <a class="navbar-brand font-weight-normal mx-0 mx-lg-3" href="#!">
+            <img src="{{ config('directus.server_url').$company_data['logo']['data']['asset_url'] }}?key=directus-small-crop" alt="logo">
           </a>
     
-          <a class="navbar-brand" href="#!" onclick="toggleSidebar(this)">
-            <i class="gg-menu-right"></i>
+          <a class="navbar-brand mx-0 mx-lg-3" href="#!" onclick="toggleSidebar(this)">
+            <i class="gg-menu-right toggle"></i>
           </a>
         </div>
       </nav>

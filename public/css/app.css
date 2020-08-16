@@ -10751,8 +10751,30 @@ body {
   }
 }
 
+@media (min-width: 1920px) {
+  .background-screen {
+    height: 40rem;
+  }
+}
+
 .navbar .navbar-brand {
   letter-spacing: 0.25rem;
+}
+
+.navbar .navbar-brand img {
+  width: 3rem;
+}
+
+@media (min-width: 1920px) {
+  .navbar .navbar-brand img {
+    width: 6rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .navbar .navbar-brand .toggle {
+    --ggs: 2;
+  }
 }
 
 #sidebar {

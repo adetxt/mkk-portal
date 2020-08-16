@@ -32,7 +32,7 @@
             </h1>
           </div>
         </div>
-        <div class="col-lg-6 d-flex align-items-center justify-content-center flex-wrap">
+        <div class="col-lg-6 d-flex align-items-center justify-content-end flex-wrap">
           <div class="btn-group align-self-end my-5 my-lg-0">
             <a href="#!" class="btn btn-primary">
               <i class="gg-facebook"></i>
@@ -44,7 +44,7 @@
               <i class="gg-twitter"></i>
             </a>
           </div>
-          <x-molecules.footer />
+          <x-molecules.footer align="right" :text="$application_data['footer']" />
         </div>
       </div>
     </div>

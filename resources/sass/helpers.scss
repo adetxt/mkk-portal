@@ -10,7 +10,9 @@ $screen-md-max: 991.98px;
 // Large devices (desktops, less than 1200px)
 $screen-lg-max: 1199.98px;
 
-$screen-xl-min: 1368px;
+$screen-xl-max: 1368px;
+
+$screen-fhd-min: 1920px;
 
 
 // Small devices
@@ -36,7 +38,14 @@ $screen-xl-min: 1368px;
 
 // Extra large devices
 @mixin xl {
-  @media (min-width: #{$screen-xl-min}) {
+  @media (max-width: #{$screen-xl-max}) {
+      @content;
+  }
+}
+
+// Extra large devices
+@mixin fhd {
+  @media (min-width: #{$screen-fhd-min}) {
       @content;
   }
 }

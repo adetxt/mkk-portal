@@ -13,6 +13,10 @@ body {
     height: 22rem;
   }
 
+  @include fhd {
+    height: 40rem;
+  }
+
   background-attachment: fixed !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -21,6 +25,19 @@ body {
 .navbar {
   .navbar-brand {
     letter-spacing: .25rem;
+    img {
+      width: 3rem;
+
+      @include fhd {
+        width: 6rem;
+      }
+    }
+
+    .toggle {
+      @include fhd {
+        --ggs: 2;
+      }
+    }
   }
 }
 

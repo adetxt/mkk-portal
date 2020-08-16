@@ -20,6 +20,12 @@ Route::group([
   $r->get('/', 'PageController@index')->name('index');
   $r->get('/about', 'PageController@about')->name('about');
   $r->get('/test', 'PageController@about')->name('test');
+
+  $r->group([
+    'prefix' => 'hook'
+  ], function ($hook) {
+    $hook->post('/recache-collection/{collectionName}/{action}/{single?}', 'HookController@recacheCollection');
+  });
 });
 
 Route::get('/home', function () {
