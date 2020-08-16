@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group([
+  'namespace' => 'v1'
+], function ($r) {
+  
+  $r->group([
+    'prefix' => 'hook'
+  ], function ($hook) {
+    $hook->post('/recache-collection/{collectionName}/{action}/{single?}', 'HookController@recacheCollection');
+  });
+});
