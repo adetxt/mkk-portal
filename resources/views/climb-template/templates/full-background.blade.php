@@ -18,18 +18,17 @@
   </div>
 
   <div id="content-wrapper">
-    <div class="d-flex justify-content-center align-items-start flex-wrap" style="height: 100vh;">
-      <nav class="navbar navbar-expand-lg navbar-light w-100">
-        <div class="container-fluid">
-          <a class="navbar-brand font-weight-normal mx-0 mx-lg-3" href="/">
-            <img src="{{ config('directus.server_url').$company_data['logo']['data']['asset_url'] }}?key=directus-small-crop" alt="logo">
-          </a>
-    
-          <a id="toggler" class="navbar-brand mx-0 mx-lg-3" href="#!" onclick="toggleSidebar()">
-            <i class="gg-menu-right toggle"></i>
-          </a>
-        </div>
-      </nav>
+    <nav class="navbar navbar-expand-lg navbar-light w-100">
+      {{-- <div class="container-fluid"> --}}
+        <a class="navbar-brand font-weight-normal mx-0 mx-lg-5 mt-3" href="/">
+          <img src="{{ config('directus.server_url').$company_data['logo']['data']['asset_url'] }}?key=directus-small-crop" alt="logo">
+        </a>
+      {{-- </div> --}}
+      <a id="toggler" class="btn btn-primary p-3 ml-auto" href="#!" onclick="toggleSidebar()">
+        <i class="gg-chevron-left toggle"></i>
+      </a>
+    </nav>
+    <div class="d-flex justify-content-center align-items-start flex-wrap" style="height: 80vh;">
     
       @yield('content')
     
@@ -56,9 +55,9 @@
       sidebarEl.classList.toggle('sidebar-toggled')
       contentWrapperEl.classList.toggle('sidebar-toggled')
 
-      toggler = document.querySelector('#toggler')
-      toggler.firstElementChild.classList.toggle('gg-menu-right')
-      toggler.firstElementChild.classList.toggle('gg-close')
+      toggler = document.querySelector('#toggler').firstElementChild
+      toggler.classList.toggle('gg-chevron-left')
+      toggler.classList.toggle('gg-chevron-right')
     }
   </script>
   @yield('script')

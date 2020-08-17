@@ -26,6 +26,11 @@ select {
   border: 1px solid #ccc !important;
 }
 
-@import url('https://css.gg/css?=|facebook|instagram|twitter|menu-right|close|arrow-right');
+.btn:focus {
+  box-shadow: none !important;
+  outline: none !important; 
+}
+
+@import url('https://css.gg/css?=|facebook|instagram|twitter|chevron-left|chevron-right|arrow-right');
 
 @import '~sass-material-colors/sass/sass-material-colors';
