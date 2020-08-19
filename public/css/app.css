@@ -11891,21 +11891,28 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 #sidebar .sidebar-item {
   text-decoration: none;
   font-size: 16pt;
   color: #212121;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
 }
 
 @media (max-width: 991.98px) {
   #sidebar .sidebar-item {
     font-size: 14pt;
   }
+}
+
+#sidebar .sidebar-item:hover {
+  padding-right: 1rem;
 }
 
 #sidebar.sidebar-toggled {

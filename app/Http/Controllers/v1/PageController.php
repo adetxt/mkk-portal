@@ -62,13 +62,21 @@ class PageController extends DirectusController
     ])['data'];
 
     $news_data = $this->getItems('news', null, [
+      'filter[category][eq]' => $req->category,
+      'limit' => $req->limit ?? 15,
+      'page' => $req->page ?? 1,
+      'meta' => '*',
       'status' => 'published',
-      'fields' => 'created_on,title,excerpt,featured_image.data'
+      'fields' => 'category.id,category.category_name,created_on,title,excerpt,featured_image.data'
+    ]);
+
+    $news_categories_data = $this->getItems('news_categories', null, [
+      'fields' => '*,id,sort,category_name'
     ])['data'];
 
     list($application_data, $company_data) = $this->withCompanyAndApplication();
 
-    return view($this->template.'news', compact('page_data','news_data','company_data','application_data'));
+    return view($this->template.'news', compact('page_data','news_data','news_categories_data','company_data','application_data'));
   }
 
   /**
@@ -87,6 +95,24 @@ class PageController extends DirectusController
     list($application_data, $company_data) = $this->withCompanyAndApplication();
 
     return view($this->template.'contact', compact('page_data','company_data','application_data'));
+  }
+  
+  /**
+   * Career Page
+   *
+   * @param  mixed $req
+   * @return void
+   */
+  public function career (Request $req) {
+    $page_data = $this->getItems('pages', null, [
+      'filter[key][eq]' => 'career',
+      'single' => true,
+      'fields' => '*,featured_image.data'
+    ])['data'];
+
+    list($application_data, $company_data) = $this->withCompanyAndApplication();
+
+    return view($this->template.'careers', compact('page_data','company_data','application_data'));
   }
 
   public function getCompany () {

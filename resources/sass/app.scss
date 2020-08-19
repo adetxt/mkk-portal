@@ -68,14 +68,21 @@ $sidebar-width: 16rem;
   margin-right: -$sidebar-width;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 
   .sidebar-item {
     text-decoration: none;
     font-size: 16pt;
     color: material-color('grey', '900');
+    transition: .4s;
+
     @include md {
       font-size: 14pt;
+    }
+
+    &:hover {
+      // text-decoration: underline;
+      padding-right: 1rem;
     }
   }
 

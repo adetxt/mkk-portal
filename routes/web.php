@@ -21,6 +21,7 @@ Route::group([
   $r->get('/about', 'PageController@about')->name('about');
   $r->get('/news', 'PageController@news')->name('news');
   $r->get('/contact', 'PageController@contact')->name('contact');
+  $r->get('/career', 'PageController@career')->name('career');
   $r->get('/test', 'PageController@about')->name('test');
 });
 

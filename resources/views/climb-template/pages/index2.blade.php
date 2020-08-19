@@ -1,4 +1,4 @@
-@extends('climb-template.templates.full-background')
+@extends('climb-template.templates.main')
 
 @section('style')
 <link rel="stylesheet" href="{{ mix('css/index2.css') }}">

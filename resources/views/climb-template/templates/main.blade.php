@@ -10,18 +10,18 @@
   @yield('style')
 </head>
 <body>
-  <div id="sidebar" class="py-5" style="background: url('img/bg2.jpg');">
+  <div id="sidebar" class="py-5 px-4" style="background: url('img/bg2.jpg');">
     <a href="/" class="sidebar-item mb-4">Home</a>
     <a href="/about" class="sidebar-item mb-4">Tentang Kami</a>
     <a href="/news" class="sidebar-item mb-4">Informasi</a>
-    <a href="#!" class="sidebar-item mb-4">Karir</a>
+    <a href="/career" class="sidebar-item mb-4">Karir</a>
     <a href="/contact" class="sidebar-item mb-4">Hubungi Kami</a>
   </div>
 
   <div id="content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light w-100">
       {{-- <div class="container-fluid"> --}}
-        <a class="navbar-brand font-weight-normal mx-0 mx-lg-5 mt-3" href="/">
+        <a class="navbar-brand font-weight-normal mx-3 mx-lg-5 mt-0 mt-lg-3" href="/">
           <img src="{{ config('directus.server_url').$company_data['logo']['data']['asset_url'] }}?key=directus-small-crop" alt="logo">
         </a>
       {{-- </div> --}}
@@ -29,7 +29,7 @@
         <i class="gg-chevron-left toggle"></i>
       </a>
     </nav>
-    <div class="d-flex justify-content-center align-items-start flex-wrap" style="height: 80vh;">
+    {{-- <div class="d-flex justify-content-center align-items-baseline flex-wrap" style="height: 80vh;"> --}}
     
       @yield('content')
     
@@ -41,7 +41,7 @@
           <i class="gg-instagram"></i>
         </a>
       </div> --}}
-    </div>
+    {{-- </div> --}}
   </div>
 
   <script src="{{ mix('js/app.js') }}"></script>

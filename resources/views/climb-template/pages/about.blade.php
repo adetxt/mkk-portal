@@ -1,4 +1,4 @@
-@extends('climb-template.templates.full-background')
+@extends('climb-template.templates.main')
 
 @section('content')
 

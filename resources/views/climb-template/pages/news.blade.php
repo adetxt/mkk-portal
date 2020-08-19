@@ -1,9 +1,12 @@
-@extends('climb-template.templates.full-background')
+@extends('climb-template.templates.main')
 
 @section('style')
 <style>
 .news-thumbnail {
   height: 200px;
+}
+a {
+  text-decoration: none;
 }
 </style>
 @endsection
@@ -29,15 +32,17 @@
     </div>
     <div class="col-lg-9">
       <div class="row g-5">
-        @foreach ($news_data as $item)
+        @foreach ($news_data['data'] as $item)
         <div class="col-lg-6 col-md-l6 mb-3">
           <x-molecules.card
             img-url="{{ $item['featured_image'] ? config('directus.server_url').($item['featured_image']['data']['asset_url']).'?key=directus-medium-crop' : '' }}"
             img-class="news-thumbnail img-cover">
             <h5 class="card-title">{{ $item['title'] }}</h5>
             <p class="card-text">{{ $item['excerpt'] }}</p>
-            <p class="card-text"><small
-                class="text-muted">{{ \Carbon\Carbon::parse($item['created_on'])->translatedFormat('d F Y') }}</small></p>
+            <p class="card-text">
+              <small class="text-muted">{{ \Carbon\Carbon::parse($item['created_on'])->translatedFormat('d F Y') }}</small>
+              <a href="{{ route('news', ['category' => $item['category']['id']]) }}" class="badge rounded-pill bg-dark text-light ml-3">{{ $item['category']['category_name'] }}</a>
+            </p>
           </x-molecules.card>
         </div>
         @endforeach
@@ -45,19 +50,27 @@
         <div class="col-12">
           <nav>
             <ul class="pagination">
+
+              @if ($news_data['meta']['page'] > $news_data['meta']['page_count'])    
               <li class="page-item">
-                <a class="page-link" href="#!">
+                <a class="page-link text-dark" href="{{ route('news', array_merge(\Request::query(), ['page' => ($news_data['meta']['page']+1)])) }}">
                   <span>&laquo;</span>
                 </a>
               </li>
-              <li class="page-item"><a class="page-link" href="#!">1</a></li>
-              <li class="page-item"><a class="page-link" href="#!">2</a></li>
-              <li class="page-item"><a class="page-link" href="#!">3</a></li>
+              @endif
+              @for ($i = 1; $i <= $news_data['meta']['page_count']; $i++)
               <li class="page-item">
-                <a class="page-link" href="#!">
+                <a class="page-link text-dark" href="{{ route('news', array_merge(\Request::query(), ['page' => $i])) }}">{{ $i }}</a>
+              </li>
+              @endfor
+
+              @if ($news_data['meta']['page'] < $news_data['meta']['page_count'])    
+              <li class="page-item">
+                <a class="page-link text-dark" href="{{ route('news', array_merge(\Request::query(), ['page' => ($news_data['meta']['page']+1)])) }}">
                   <span>&raquo;</span>
                 </a>
               </li>
+              @endif
             </ul>
           </nav>
         </div>
@@ -67,10 +80,14 @@
       <h5>Kategori Informasi</h5>
       <x-molecules.card>
         <ul class="list-group">
-          <li class="list-group-item">Berita</li>
-          <li class="list-group-item">Agenda</li>
-          <li class="list-group-item">Lowongan</li>
-          <li class="list-group-item">Pengumuman</li>
+          <li class="list-group-item">
+            <a class="text-dark" href="{{ route('news') }}">Semua Informasi</a>
+          </li>
+          @foreach ($news_categories_data as $i)
+          <li class="list-group-item">
+            <a class="text-dark" href="{{ route('news', ['category' => $i['id']]) }}">{{ $i['category_name'] }}</a>
+          </li>
+          @endforeach
         </ul>
       </x-molecules.card>
     </div>

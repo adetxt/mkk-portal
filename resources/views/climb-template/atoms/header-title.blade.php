@@ -1,0 +1,1 @@
+<h1 class="w-100 text-center text-dark my-4 mb-5">{{ $page_data['header'] }}</h1>
