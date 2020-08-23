@@ -10,7 +10,7 @@
   @yield('style')
 </head>
 <body>
-  <div id="sidebar" class="py-5 px-4" style="background: url('img/bg2.jpg');">
+  <div id="sidebar" class="py-5 px-4">
     <a href="/" class="sidebar-item mb-4">Home</a>
     <a href="/about" class="sidebar-item mb-4">Tentang Kami</a>
     <a href="/news" class="sidebar-item mb-4">Informasi</a>

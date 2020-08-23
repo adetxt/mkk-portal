@@ -37,7 +37,9 @@ a {
           <x-molecules.card
             img-url="{{ $item['featured_image'] ? config('directus.server_url').($item['featured_image']['data']['asset_url']).'?key=directus-medium-crop' : '' }}"
             img-class="news-thumbnail img-cover">
-            <h5 class="card-title">{{ $item['title'] }}</h5>
+            <h5 class="card-title">
+                <a class="text-dark" href="/news/{{ $item['slug'].'/'.$item['id'] }}">{{ $item['title'] }}</a>
+            </h5>
             <p class="card-text">{{ $item['excerpt'] }}</p>
             <p class="card-text">
               <small class="text-muted">{{ \Carbon\Carbon::parse($item['created_on'])->translatedFormat('d F Y') }}</small>
