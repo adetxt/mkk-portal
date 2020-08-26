@@ -11,9 +11,9 @@
       <div class="jumbotron background-screen" style="background-image: url('{{ config('directus.server_url').($page_data['featured_image']['data']['asset_url'] ?? '') }}');">
         <div class="jumbotron-content position-relative">
           <div class="position-absolute">
-            <div class="btn-group flex-column">
-              <a href="{{ $company_data['facebook_url'] }}" title="{{ $company_data['facebook_name'] }}" class="btn btn-primary p-3" target="_blank">
-                <i class="gg-facebook"></i>
+            <div class="btn-group-vertical">
+              <a href="{{ $company_data['facebook_url'] }}" title="{{ $company_data['facebook_name'] }}" class="btn btn-primary p-3 d-flex align-items-center" target="_blank">
+                <i class="gg-facebook d-inline-block"></i>
               </a>
               <a href="{{ $company_data['instagram_url'] }}" title="{{ $company_data['instagram_username'] }}" class="btn btn-dark p-3" target="_blank">
                 <i class="gg-instagram"></i>
