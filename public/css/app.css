@@ -12059,12 +12059,12 @@ body {
 }
 
 .navbar .navbar-brand img {
-  width: 3rem;
+  width: 3.5rem;
 }
 
 @media (min-width: 1920px) {
   .navbar .navbar-brand img {
-    width: 4rem;
+    width: 4.5rem;
   }
 }
 

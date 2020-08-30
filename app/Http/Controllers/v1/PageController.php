@@ -100,7 +100,7 @@ class PageController extends DirectusController
                 'meta' => '*',
                 'status' => 'published',
                 'fields' =>
-                    'category.id,category.category_name,created_on,owner.first_name,owner.last_name,id,title,excerpt,content,featured_image.data',
+                'category.id,category.category_name,created_on,owner.first_name,owner.last_name,id,title,excerpt,content,featured_image.data',
             ])['data'];
 
             return view(
@@ -123,7 +123,7 @@ class PageController extends DirectusController
             'meta' => '*',
             'status' => 'published',
             'fields' =>
-                'category.id,category.category_name,created_on,id,title,excerpt,slug,featured_image.data',
+            'category.id,category.category_name,created_on,id,title,excerpt,slug,featured_image.data',
         ]);
 
         $news_categories_data = $this->getItems('news_categories', null, [
@@ -189,6 +189,72 @@ class PageController extends DirectusController
         return view(
             $this->template . 'careers',
             compact('page_data', 'company_data', 'application_data')
+        );
+    }
+
+    /**
+     * gallery
+     *
+     * @param  mixed $req
+     * @param  mixed $slug
+     * @param  mixed $id
+     * @return void
+     */
+    public function gallery(Request $req, $slug = null, $id = null)
+    {
+        $page_data = $this->getItems('pages', null, [
+            'filter[key][eq]' => 'gallery',
+            'single' => true,
+            'fields' => '*,featured_image.data',
+        ])['data'];
+
+        list(
+            $application_data,
+            $company_data,
+        ) = $this->withCompanyAndApplication();
+
+        if ($slug and $id) {
+            $galleries_data = $this->getItems('gallery', null, [
+                'filter[id][eq]' => $id,
+                'filter[slug][eq]' => $slug,
+                'single' => true,
+                'meta' => '*',
+                'status' => 'published',
+                'fields' =>
+                'created_on,owner.first_name,owner.last_name,id,title,featured_image.data,foto.file.data',
+            ])['data'];
+
+            return view(
+                $this->template . 'gallery-detail',
+                compact(
+                    'page_data',
+                    'galleries_data',
+                    'company_data',
+                    'application_data'
+                )
+            );
+        }
+
+        $galleries_data = $this->getItems('gallery', null, [
+            'filter[category][eq]' => $req->category,
+            'filter[id][eq]' => $id,
+            'filter[slug][eq]' => $slug,
+            'limit' => $req->limit ?? 15,
+            'page' => $req->page ?? 1,
+            'meta' => '*',
+            'status' => 'published',
+            'fields' =>
+            'created_on,id,title,featured_image.data,slug',
+        ]);
+
+        return view(
+            $this->template . 'gallery',
+            compact(
+                'page_data',
+                'galleries_data',
+                'company_data',
+                'application_data'
+            )
         );
     }
 

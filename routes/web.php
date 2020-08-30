@@ -15,21 +15,23 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([
-  'namespace' => 'v1'
+    'namespace' => 'v1'
 ], function ($r) {
-  $r->get('/', 'PageController@index')->name('index');
-  $r->get('/about', 'PageController@about')->name('about');
-  $r->get('/news', 'PageController@news')->name('news');
-  $r->get('/news/{slug}/{id}', 'PageController@news')->name('news.detail');
-  $r->get('/contact', 'PageController@contact')->name('contact');
-  $r->get('/career', 'PageController@career')->name('career');
-  $r->get('/test', 'PageController@about')->name('test');
+    $r->get('/', 'PageController@index')->name('index');
+    $r->get('/about', 'PageController@about')->name('about');
+    $r->get('/news', 'PageController@news')->name('news');
+    $r->get('/news/{slug}/{id}', 'PageController@news')->name('news.detail');
+    $r->get('/contact', 'PageController@contact')->name('contact');
+    $r->get('/career', 'PageController@career')->name('career');
+    $r->get('/gallery', 'PageController@gallery')->name('gallery');
+    $r->get('/gallery/{slug}/{id}', 'PageController@gallery')->name('gallery.detail');
+    $r->get('/test', 'PageController@about')->name('test');
 });
 
 Route::get('/home', function () {
-  return redirect()->route('index');
+    return redirect()->route('index');
 });
 
 Route::get('/index', function () {
-  return redirect()->route('index');
+    return redirect()->route('index');
 });

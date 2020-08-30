@@ -14,6 +14,7 @@
     <a href="/" class="sidebar-item mb-4">Home</a>
     <a href="/about" class="sidebar-item mb-4">Tentang Kami</a>
     <a href="/news" class="sidebar-item mb-4">Informasi</a>
+    <a href="/gallery" class="sidebar-item mb-4">Galeri</a>
     <a href="/career" class="sidebar-item mb-4">Karir</a>
     <a href="/contact" class="sidebar-item mb-4">Hubungi Kami</a>
   </div>
