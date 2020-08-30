@@ -273,7 +273,7 @@ class PageController extends DirectusController
         return Cache::rememberForever('application', function () {
             return $this->getItems('application', null, [
                 'single' => true,
-                'fields' => '*',
+                'fields' => '*,favicon.data',
             ])['data'];
         });
     }
