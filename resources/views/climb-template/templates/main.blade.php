@@ -23,7 +23,7 @@
   <div id="content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light w-100">
       {{-- <div class="container-fluid"> --}}
-        <a class="navbar-brand font-weight-normal mx-3 mx-lg-5 mt-0 mt-lg-3" href="/">
+        <a class="navbar-brand font-weight-normal mx-3 mx-lg-5 mt-0 mt-lg-1" href="/">
           <img src="{{ config('directus.server_url').$company_data['logo']['data']['asset_url'] }}?key=directus-small-crop" alt="logo">
         </a>
       {{-- </div> --}}
