@@ -46,7 +46,7 @@
           <hr>
       </div>
       @foreach ($clients_data as $item)    
-      <div class="col-lg-1 d-flex mr-4">
+      <div class="col-6 d-flex justify-content-center">
           <a class="my-auto" href="{{ $item['url'] ?? '#!' }}" title="{{ $item['name'] }}" target="_blank">
               <img class="client" src="{{ config('directus.server_url').$item['logo']['data']['asset_url']}}?key=directus-medium-contain" alt="logo {{ $item['name'] }}">
           </a>
@@ -56,6 +56,35 @@
 </div>
 <div class="mb-5 w-100"></div>
 <x-molecules.footer :text="$application_data['footer']" add-class="text-center" />
+
+<div class="modal fade" id="modalShowEmployee" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Total Karyawan</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Kabupaten/Kota</th>
+                            <th>Total Karyawan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
@@ -63,123 +92,146 @@
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
 <script>
-// Prepare demo data
-// Data is joined to map using value of 'hc-key' property by default.
-// See API docs for 'joinBy' for more info on linking data and map.
+
 var data = [
-    // ['id-3700', 0],
-    ['id-ac', 1, 'id-ac'],
-    ['id-jt', 2],
-    ['id-be', 3],
-    ['id-bt', 4],
-    ['id-kb', 5],
-    ['id-bb', 6],
-    ['id-ba', 7],
-    ['id-ji', 8],
-    ['id-ks', 9],
-    ['id-nt', 10],
-    ['id-se', 11],
-    ['id-kr', 12],
-    ['id-ib', 13],
-    ['id-su', 14],
-    ['id-ri', 15],
-    ['id-sw', 16],
-    ['id-ku', 17],
-    ['id-la', 18],
-    ['id-sb', 19],
-    ['id-ma', 20],
-    ['id-nb', 21],
-    ['id-sg', 22],
-    ['id-st', 23],
-    ['id-pa', 24],
-    ['id-jr', 25],
-    ['id-ki', 26],
-    ['id-1024', 27],
-    ['id-jk', 28],
-    ['id-go', 29],
-    ['id-yo', 30],
-    ['id-sl', 31],
-    ['id-sr', 32],
-    ['id-ja', 33],
-    ['id-kt', 34]
+    ['id-3700', 1],
+    ['id-ac', 1, 1],
+    ['id-jt', 1, 13],
+    ['id-be', 1, 7],
+    ['id-bt', 1, 16],
+    ['id-kb', 1, 20],
+    ['id-bb', 1, 9],
+    ['id-ba', 1, 17],
+    ['id-ji', 1, 15],
+    ['id-ks', 1, 22],
+    ['id-nt', 1, 19],
+    ['id-se', 1],
+    ['id-kr', 1, 10],
+    ['id-ib', 1],
+    ['id-su', 1, 2],
+    ['id-ri', 1, 4],
+    ['id-sw', 1],
+    ['id-ku', 1, 24],
+    ['id-la', 1, 8],
+    ['id-sb', 1, 3],
+    ['id-ma', 1, 31],
+    ['id-nb', 1, 18],
+    ['id-sg', 1, 28],
+    ['id-st', 1, 26],
+    ['id-pa', 1, 34],
+    ['id-jr', 1],
+    ['id-ki', 1, 23],
+    ['id-1024', 1],
+    ['id-jk', 1, 11],
+    ['id-go', 1, 29],
+    ['id-yo', 1, 14],
+    ['id-sl', 1, 27],
+    ['id-sr', 1, 30],
+    ['id-ja', 1, 5],
+    ['id-kt', 1, 21]
 ];
 
-// Create the chart
-Highcharts.mapChart('map-container', {
-    chart: {
-        map: 'countries/id/id-all',
-        backgroundColor: '#f5f5f5'
-    },
+const unit_api = async () => {
+    await fetch(`http://localhost:8000/api/units/count`)
+        .then(res => res.json())
+        .then(json => {
+            let json_data
+            
+            data.map(i => {
+                json_data = json[i[2]]
+                i[1] = 0
 
-    title: {
-        text: 'Jumlah Cabang Kami'
-    },
+                if (json_data) {
+                    let count = json_data.reduce((n, i) => n+i.employee_count, 0)
+                    i[1] = (count+0)
+                    return i
+                }
 
-    subtitle: {
-        text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/id/id-all.js">Indonesia</a>'
-    },
+                return i
+            })
 
-    mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-            verticalAlign: 'bottom'
+            renderChart(data, json)
+        })
+}
+
+unit_api()
+
+const renderChart = (data, json) => {
+    // Create the chart
+    Highcharts.mapChart('map-container', {
+        chart: {
+            map: 'countries/id/id-all',
+            backgroundColor: '#f5f5f5'
         },
-        buttons: {
-            zoomIn: {
-                align: 'right'
+
+        title: {
+            text: 'Jumlah Cabang Kami'
+        },
+
+        subtitle: {
+            text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/id/id-all.js">Indonesia</a>'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
             },
-            zoomOut: {
-                align: 'right'
+            buttons: {
+                zoomIn: {
+                    align: 'right'
+                },
+                zoomOut: {
+                    align: 'right'
+                }
             }
-        }
-    },
+        },
 
-    colorAxis: {
-        min: 0
-    },
+        colorAxis: {
+            min: 0
+        },
 
-    plotOptions: {
-        series: {
-            events: {
-                click: function (e) {
-                    console.log(e.point['hc-key'])
-                    var text = '<b>Clicked</b><br>Series: ' + this.name +
-                            '<br>Point: ' + e.point.name + ' (' + e.point.value + ')';
-                    if (!this.chart.clickLabel) {
-                        this.chart.clickLabel = this.chart.renderer.label(text, 0, 250)
-                            .css({
-                                width: '180px'
-                            })
-                            .add();
-                    } else {
-                        this.chart.clickLabel.attr({
-                            text: text
-                        });
+        plotOptions: {
+            series: {
+                events: {
+                    click: async function (e) {
+                        let _data = json[e.point.dbkey]
+                        _data = _data.map(i => {
+                            return `<tr>
+                                    <td>${i.regency.name}</td>
+                                    <td>${i.employee_count}</td>
+                                </tr>`
+                        })
+
+                        let modalElement = document.getElementById('modalShowEmployee')
+                        modalElement.querySelector('tbody').innerHTML = _data.join('')
+                        let myModal = new bootstrap.Modal(modalElement)
+                        myModal.show()
                     }
                 }
             }
-        }
-    },
-
-    series: [{
-        data: data,
-        name: 'Jumlah',
-        keys: ['hc-key', 'value', 'dbkey'],
-        states: {
-            hover: {
-                color: '#BADA55'
-            }
         },
-        dataLabels: {
-            enabled: true,
-            format: '{point.name}'
-        }
-    }],
 
-    // tooltip: {	
-    //     pointFormat: '<span>{point.name}, Rank: <b>{point.rank}</b>, Value 1: <b>{point.value}</b></span>'
-    // }
-});
+        series: [{
+            data: data,
+            name: 'Jumlah',
+            keys: ['hc-key', 'value', 'dbkey'],
+            states: {
+                hover: {
+                    color: '#BADA55'
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }],
+
+        // tooltip: {	
+        //     pointFormat: '<span>{point.name}, Rank: <b>{point.rank}</b>, Value 1: <b>{point.value}</b></span>'
+        // }
+    });
+}
 
 </script>
 @endsection
