@@ -132,7 +132,7 @@ var data = [
 ];
 
 const unit_api = async () => {
-    await fetch(`http://localhost:8000/api/units/count`)
+    await fetch(`https://mkk-sdm.rateamedia.com/api/units/count`)
         .then(res => res.json())
         .then(json => {
             let json_data
