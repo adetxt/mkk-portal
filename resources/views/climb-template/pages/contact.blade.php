@@ -6,12 +6,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-6 mb-4 order-last order-lg-first">
+    <div class="col-lg-6 mb-4 order-2 order-lg-1">
       <h5 class="card-title">Ada Pertanyaan?</h5>
       <hr>
       @include('climb-template.organisms.contact-form')
     </div>
-    <div class="col-lg-6 order-first order-lg-last">
+    <div class="col-lg-6 order-1 order-lg-2">
       <div class="row">
         <div class="col-12">
           <h5 class="card-title">Kontak Kami</h5>

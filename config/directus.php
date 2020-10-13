@@ -1,23 +1,18 @@
 <?php
 
 return [
-
-  /**
+    /*
    * Directus server URL
-   * 
+   *
    * specify without "/" in the end
    */
-  "server_url" => "https://mkk-cms.rateamedia.site",
+    'server_url' => 'https://cms.mandirikaryakirana.co.id',
 
-  /**
-   * Directus project name
-   */
-  "project_name" => "mkk-portal",
+    // Directus project name
+    'project_name' => 'mkk-portal',
 
-  /**
-   * Directus api credential
-   */
-  "email" => "adetxt151@gmail.com",
-  "password" => "rosetta151",
-  "static_token" => "pXg9KgBe2mtYGgVeFB2cMFx4"
+    // Directus api credential
+    'email' => 'adetxt151@gmail.com',
+    'password' => 'rosetta151',
+    'static_token' => 'pXg9KgBe2mtYGgVeFB2cMFx4',
 ];
