@@ -6,29 +6,13 @@
 
 <div class="container">
   <div class="row g-4">
-    <div class="col-lg-4">
+    {{-- <div class="col-lg-4">
       <x-molecules.card title="Product Manager" subtitle="Rp. 8-12jt" link="#!" link-text="Detail">
         <div class="card-text">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam optio exercitationem sapiente, est quaerat ex cupiditate?
         </div>
       </x-molecules.card>
-    </div>
-    <div class="col-lg-4">
-      <x-molecules.card title="System Administrator" subtitle="Rp. 8-12jt" link="#!" link-text="Detail">
-        <div class="card-text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam optio exercitationem sapiente, est quaerat ex
-          cupiditate?
-        </div>
-      </x-molecules.card>
-    </div>
-    <div class="col-lg-4">
-      <x-molecules.card title="Quality Assurance" subtitle="Rp. 8-12jt" link="#!" link-text="Detail">
-        <div class="card-text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam optio exercitationem sapiente, est quaerat ex
-          cupiditate?
-        </div>
-      </x-molecules.card>
-    </div>
+    </div> --}}
   </div>
 </div>
 @endsection
