@@ -8,16 +8,15 @@ use Illuminate\Support\Facades\Cache;
 
 class PageController extends DirectusController
 {
-    function __construct()
+    public function __construct()
     {
         $this->template = 'climb-template.pages.';
     }
 
     /**
-     * Index page
+     * Index page.
      *
-     * @param  Illuminate\Http\Request $req
-     * @return void
+     * @param Illuminate\Http\Request $req
      */
     public function index(Request $req)
     {
@@ -29,20 +28,18 @@ class PageController extends DirectusController
 
         list(
             $application_data,
-            $company_data,
-        ) = $this->withCompanyAndApplication();
+            $company_data) = $this->withCompanyAndApplication();
 
         return view(
-            $this->template . 'index2',
+            $this->template.'index2',
             compact('page_data', 'company_data', 'application_data')
         );
     }
 
     /**
-     * About page
+     * About page.
      *
-     * @param  mixed $req
-     * @return void
+     * @param mixed $req
      */
     public function about(Request $req)
     {
@@ -57,27 +54,20 @@ class PageController extends DirectusController
             'fields' => 'name, url, logo.data',
         ])['data'];
 
-        list(
-            $application_data,
-            $company_data,
-        ) = $this->withCompanyAndApplication();
+        list($application_data, $company_data) = $this->withCompanyAndApplication();
 
         return view(
-            $this->template . 'about',
-            compact(
-                'page_data',
-                'clients_data',
-                'company_data',
-                'application_data'
-            )
+            $this->template.'about',
+            compact('page_data', 'clients_data', 'company_data', 'application_data')
         );
     }
 
     /**
-     * News page
+     * News page.
      *
-     * @param  mixed $req
-     * @return void
+     * @param mixed      $req
+     * @param null|mixed $slug
+     * @param null|mixed $id
      */
     public function news(Request $req, $slug = null, $id = null)
     {
@@ -89,8 +79,7 @@ class PageController extends DirectusController
 
         list(
             $application_data,
-            $company_data,
-        ) = $this->withCompanyAndApplication();
+            $company_data) = $this->withCompanyAndApplication();
 
         if ($slug and $id) {
             $news_data = $this->getItems('news', null, [
@@ -99,12 +88,11 @@ class PageController extends DirectusController
                 'single' => true,
                 'meta' => '*',
                 'status' => 'published',
-                'fields' =>
-                'category.id,category.category_name,created_on,owner.first_name,owner.last_name,id,title,excerpt,content,featured_image.data',
+                'fields' => 'category.id,category.category_name,created_on,owner.first_name,owner.last_name,id,title,excerpt,content,featured_image.data',
             ])['data'];
 
             return view(
-                $this->template . 'news-detail',
+                $this->template.'news-detail',
                 compact(
                     'page_data',
                     'news_data',
@@ -122,8 +110,7 @@ class PageController extends DirectusController
             'page' => $req->page ?? 1,
             'meta' => '*',
             'status' => 'published',
-            'fields' =>
-            'category.id,category.category_name,created_on,id,title,excerpt,slug,featured_image.data',
+            'fields' => 'category.id,category.category_name,created_on,id,title,excerpt,slug,featured_image.data',
         ]);
 
         $news_categories_data = $this->getItems('news_categories', null, [
@@ -131,7 +118,7 @@ class PageController extends DirectusController
         ])['data'];
 
         return view(
-            $this->template . 'news',
+            $this->template.'news',
             compact(
                 'page_data',
                 'news_data',
@@ -143,10 +130,9 @@ class PageController extends DirectusController
     }
 
     /**
-     * Contact page
+     * Contact page.
      *
-     * @param  mixed $req
-     * @return void
+     * @param mixed $req
      */
     public function contact(Request $req)
     {
@@ -158,20 +144,18 @@ class PageController extends DirectusController
 
         list(
             $application_data,
-            $company_data,
-        ) = $this->withCompanyAndApplication();
+            $company_data) = $this->withCompanyAndApplication();
 
         return view(
-            $this->template . 'contact',
+            $this->template.'contact',
             compact('page_data', 'company_data', 'application_data')
         );
     }
 
     /**
-     * Career Page
+     * Career Page.
      *
-     * @param  mixed $req
-     * @return void
+     * @param mixed $req
      */
     public function career(Request $req)
     {
@@ -183,22 +167,20 @@ class PageController extends DirectusController
 
         list(
             $application_data,
-            $company_data,
-        ) = $this->withCompanyAndApplication();
+            $company_data) = $this->withCompanyAndApplication();
 
         return view(
-            $this->template . 'careers',
+            $this->template.'careers',
             compact('page_data', 'company_data', 'application_data')
         );
     }
 
     /**
-     * gallery
+     * gallery.
      *
-     * @param  mixed $req
-     * @param  mixed $slug
-     * @param  mixed $id
-     * @return void
+     * @param mixed $req
+     * @param mixed $slug
+     * @param mixed $id
      */
     public function gallery(Request $req, $slug = null, $id = null)
     {
@@ -210,8 +192,7 @@ class PageController extends DirectusController
 
         list(
             $application_data,
-            $company_data,
-        ) = $this->withCompanyAndApplication();
+            $company_data) = $this->withCompanyAndApplication();
 
         if ($slug and $id) {
             $galleries_data = $this->getItems('gallery', null, [
@@ -220,12 +201,11 @@ class PageController extends DirectusController
                 'single' => true,
                 'meta' => '*',
                 'status' => 'published',
-                'fields' =>
-                'created_on,owner.first_name,owner.last_name,id,title,featured_image.data,foto.file.data',
+                'fields' => 'created_on,owner.first_name,owner.last_name,id,title,featured_image.data,foto.file.data',
             ])['data'];
 
             return view(
-                $this->template . 'gallery-detail',
+                $this->template.'gallery-detail',
                 compact(
                     'page_data',
                     'galleries_data',
@@ -243,12 +223,11 @@ class PageController extends DirectusController
             'page' => $req->page ?? 1,
             'meta' => '*',
             'status' => 'published',
-            'fields' =>
-            'created_on,id,title,featured_image.data,slug',
+            'fields' => 'created_on,id,title,featured_image.data,slug',
         ]);
 
         return view(
-            $this->template . 'gallery',
+            $this->template.'gallery',
             compact(
                 'page_data',
                 'galleries_data',

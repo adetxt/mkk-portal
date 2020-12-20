@@ -5477,7 +5477,7 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-"php-parser@github:glayzzle/php-parser#5a0e2e1bf12517bd1c544c0f4e68482d0362a7b5":
+php-parser@glayzzle/php-parser#5a0e2e1bf12517bd1c544c0f4e68482d0362a7b5:
   version "3.0.1"
   resolved "https://codeload.github.com/glayzzle/php-parser/tar.gz/5a0e2e1bf12517bd1c544c0f4e68482d0362a7b5"
 

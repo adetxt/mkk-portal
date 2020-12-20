@@ -19,14 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([
-  'namespace' => 'v1'
+    'namespace' => 'v1',
 ], function ($r) {
-  
-  $r->group([
-    'prefix' => 'hook'
-  ], function ($hook) {
-    $hook->post('/recache-collection/{collection}/{action}/{single?}', 'HookController@recacheCollection');
+    $r->group([
+        'prefix' => 'hook',
+    ], function ($hook) {
+      $hook->post('/recache-collection/{collection}/{action}/{single?}', 'HookController@recacheCollection');
   });
 
-  $r->get('/flush', 'HookController@flushCache');
+    $r->get('/flush', 'HookController@flushCache');
 });
