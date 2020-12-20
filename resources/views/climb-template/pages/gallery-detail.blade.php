@@ -40,7 +40,7 @@
 
             <div class="row">
                 @foreach ($galleries_data['foto'] as $foto)
-                    <div class="col-lg-3 col-md-4 col-6">
+                    <div class="col-lg-3 col-md-4 col-6 mb-3">
                         <a href="{{ config('directus.server_url').($foto['file']['data']['asset_url']) }}" data-fslightbox="foto">
                             <img class="img-fluid img-cover" src="{{ config('directus.server_url').($foto['file']['data']['asset_url']) }}?key=directus-medium-crop" alt="">
                         </a>
