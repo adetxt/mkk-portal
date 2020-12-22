@@ -6,7 +6,7 @@ return [
    *
    * specify without "/" in the end
    */
-    'server_url' => 'https://cms.mandirikaryakirana.co.id',
+    'server_url' => 'http://cms.mkksystem.com',
 
     // Directus project name
     'project_name' => 'mkk-portal',

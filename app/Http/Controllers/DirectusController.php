@@ -11,11 +11,11 @@ class DirectusController extends Controller
     public $api_url = null;
 
     public $hasError = false; // error state
-  public $errorMesssage = null; // error message
+    public $errorMesssage = null; // error message
 
-  public function __construct()
-  {
-  }
+    public function __construct()
+    {
+    }
   
     /**
      * Generate Directus API URL
@@ -37,9 +37,9 @@ class DirectusController extends Controller
     {
         $this->getApiUrl();
         $token = Http::post($this->api_url.'/auth/authenticate', [
-      'email' => config('directus.email'),
-      'password' => config('directus.password')
-    ]);
+            'email' => config('directus.email'),
+            'password' => config('directus.password')
+        ]);
 
         if ($token->failed()) {
             $this->createError($token);
