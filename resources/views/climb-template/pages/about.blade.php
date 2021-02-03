@@ -204,10 +204,12 @@ const renderChart = (data, json) => {
                         })
 
                         regencies.forEach(function ($val, $regency) {
-                            render[] = `<tr>
+                            render.push(
+                                `<tr>
                                     <td>${regency}</td>
                                     <td>${val}</td>
                                 </tr>`
+                            )
                         })
 
                         let modalElement = document.getElementById('modalShowEmployee')
