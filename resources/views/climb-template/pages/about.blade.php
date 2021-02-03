@@ -196,15 +196,23 @@ const renderChart = (data, json) => {
                 events: {
                     click: async function (e) {
                         let _data = json[e.point.dbkey]
+                        let regencies = []
+
                         _data = _data.map(i => {
+                            if (!regencies[i.regency.name]) {
+                                regencies[i.regency.name] += i.employee_count
+                            }
+                        })
+
+                        regencies.forEach(function ($val, $regency) {
                             return `<tr>
-                                    <td>${i.regency.name}</td>
-                                    <td>${i.employee_count}</td>
+                                    <td>${regency}</td>
+                                    <td>${val}</td>
                                 </tr>`
                         })
 
                         let modalElement = document.getElementById('modalShowEmployee')
-                        modalElement.querySelector('tbody').innerHTML = _data.join('')
+                        modalElement.querySelector('tbody').innerHTML = regencies.join('')
                         let myModal = new bootstrap.Modal(modalElement)
                         myModal.show()
                     }
