@@ -200,9 +200,7 @@ const renderChart = (data, json) => {
                         let render = []
 
                         _data = _data.map(i => {
-                            if (!regencies[i.regency.name]) {
-                                regencies[i.regency.name] += i.employee_count
-                            }
+                            regencies[i.regency.name] += i.employee_count
                         })
 
                         regencies.forEach(function ($val, $regency) {
