@@ -132,7 +132,7 @@ var data = [
 ];
 
 const unit_api = async () => {
-    await fetch(`https://sdm.mandirikaryakirana.co.id/api/units/count`)
+    await fetch(`https://sdm.mkksystem.com/api/units/count`)
         .then(res => res.json())
         .then(json => {
             let json_data
@@ -196,24 +196,15 @@ const renderChart = (data, json) => {
                 events: {
                     click: async function (e) {
                         let _data = json[e.point.dbkey]
-                        let regencies = []
-                        let render = []
-
                         _data = _data.map(i => {
-                            regencies[i.regency.name] += i.employee_count
-                        })
-
-                        regencies.forEach(function ($val, $regency) {
-                            render.push(
-                                `<tr>
-                                    <td>${regency}</td>
-                                    <td>${val}</td>
+                            return `<tr>
+                                    <td>${i.regency.name}</td>
+                                    <td>${i.employee_count}</td>
                                 </tr>`
-                            )
                         })
 
                         let modalElement = document.getElementById('modalShowEmployee')
-                        modalElement.querySelector('tbody').innerHTML = render.join('')
+                        modalElement.querySelector('tbody').innerHTML = _data.join('')
                         let myModal = new bootstrap.Modal(modalElement)
                         myModal.show()
                     }
