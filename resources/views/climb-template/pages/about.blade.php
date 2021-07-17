@@ -72,6 +72,7 @@
                         <tr>
                             <th>Kabupaten/Kota</th>
                             <th>Total Karyawan</th>
+                            <th>Total Unit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,10 +140,11 @@ const unit_api = async () => {
             
             data.map(i => {
                 json_data = json[i[2]]
+                // Set default value
                 i[1] = 0
 
                 if (json_data) {
-                    let count = json_data.reduce((n, i) => n+i.employee_count, 0)
+                    let count = Object.values(json_data).reduce((n, i) => n+i.employee_count, 0)
                     i[1] = (count+0)
                     return i
                 }
@@ -165,7 +167,7 @@ const renderChart = (data, json) => {
         },
 
         title: {
-            text: 'Jumlah Cabang Kami'
+            text: 'Sebaran Cabang'
         },
 
         subtitle: {
@@ -196,10 +198,11 @@ const renderChart = (data, json) => {
                 events: {
                     click: async function (e) {
                         let _data = json[e.point.dbkey]
-                        _data = _data.map(i => {
+                        _data = Object.values(_data).map(i => {
                             return `<tr>
                                     <td>${i.regency.name}</td>
                                     <td>${i.employee_count}</td>
+                                    <td>${i.unit_count}</td>
                                 </tr>`
                         })
 
@@ -214,7 +217,7 @@ const renderChart = (data, json) => {
 
         series: [{
             data: data,
-            name: 'Jumlah',
+            name: 'Total Karyawan',
             keys: ['hc-key', 'value', 'dbkey'],
             states: {
                 hover: {

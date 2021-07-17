@@ -18,6 +18,9 @@ Route::group([
     'namespace' => 'v1'
 ], function ($r) {
     $r->get('/', 'PageController@index')->name('index');
+    $r->get('/home', 'PageController@index');
+    $r->get('/index', 'PageController@index');
+    
     $r->get('/about', 'PageController@about')->name('about');
     $r->get('/news', 'PageController@news')->name('news');
     $r->get('/news/{slug}/{id}', 'PageController@news')->name('news.detail');
@@ -28,10 +31,10 @@ Route::group([
     $r->get('/test', 'PageController@about')->name('test');
 });
 
-Route::get('/home', function () {
-    return redirect()->route('index');
-});
+// Route::get('/home', function () {
+//     return redirect()->route('index');
+// });
 
-Route::get('/index', function () {
-    return redirect()->route('index');
-});
+// Route::get('/index', function () {
+//     return redirect()->route('index');
+// });
